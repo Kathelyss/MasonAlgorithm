@@ -8,6 +8,7 @@ namespace MasonAlgorithm
     /// <summary>
     /// Статический ксласс, задающий начальное значение ОрГрафа в памяти машины.
     /// </summary>
+    /// lol
     static class DataGraph
     {
 
