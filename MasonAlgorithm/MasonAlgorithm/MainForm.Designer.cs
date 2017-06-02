@@ -43,7 +43,7 @@
             this.ResumeLayout(false);
 
             FileReader reader = new FileReader();
-            Graph = reader.ReadFromFile("C:\\Users\\Kathelyss\\Desktop\\test.xml");
+            Graph = reader.ReadFromFile("test.xml");
         }
 
         #endregion
