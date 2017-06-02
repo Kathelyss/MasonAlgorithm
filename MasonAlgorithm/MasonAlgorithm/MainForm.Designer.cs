@@ -20,6 +20,8 @@
             base.Dispose(disposing);
         }
 
+        OrGraph Graph; // Сформированный граф.
+
         #region Код, автоматически созданный конструктором форм Windows
 
         /// <summary>
@@ -41,7 +43,7 @@
             this.ResumeLayout(false);
 
             FileReader reader = new FileReader();
-            reader.ReadFromFile("C:\\Users\\Kathelyss\\Desktop\\test.xml");
+            Graph = reader.ReadFromFile("C:\\Users\\Kathelyss\\Desktop\\test.xml");
         }
 
         #endregion
@@ -50,16 +52,14 @@
 
         #region Воровство детектед
 
-        OrGraph graph; // заданный граф
-
         /// <summary>
         /// Инициализация графа с помощью файла.
         /// </summary>
       /*  private OrGraph SetGraph()
         {
             //по идее инициализация графа должна быть здесь
-            FileReader f = new FileReader();
-            f.ReadFromFile("c:\\Users\\Kathelyss\\Desktop\\test.xml");
+            FileReader reader = new FileReader();
+            Graph = reader.ReadFromFile("C:\\Users\\Kathelyss\\Desktop\\test.xml");
         }
       */
 
@@ -69,7 +69,7 @@
         private void SetWaysValueText()
         {
           //  textBoxWays.Text = "";
-            foreach (var item in graph.getWays)
+            foreach (var item in Graph.getWays)
             {
             //    textBoxWays.Text += item.ToString() + Environment.NewLine;
             }
@@ -81,7 +81,7 @@
         private void SetCyclesValuesText()
         {
           //  textBoxCycles.Text = "";
-            foreach (var item in graph.getCycle)
+            foreach (var item in Graph.getCycle)
             {
           //      textBoxCycles.Text += item.ToString() + Environment.NewLine;
             }
@@ -92,7 +92,7 @@
         /// </summary>
         private void SetMaisonValue()
         {
-            Algorithm Maison = new Algorithm(graph);
+            Algorithm Maison = new Algorithm(Graph);
             // textBoxNumerator.Text = Maison.getNumerator();
             // textBoxDenominator.Text = Maison.getDenominator();
 
