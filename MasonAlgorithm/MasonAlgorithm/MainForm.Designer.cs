@@ -40,11 +40,11 @@
             this.Text = "Алгоритм Мейсона";
             this.ResumeLayout(false);
 
+            FileReader reader = new FileReader();
+            reader.ReadFromFile("C:\\Users\\Kathelyss\\Desktop\\test.xml");
         }
 
         #endregion
-
-
 
 
 
@@ -53,24 +53,18 @@
         OrGraph graph; // заданный граф
 
         /// <summary>
-        /// здесь будет инициализация графа
+        /// Инициализация графа с помощью файла.
         /// </summary>
       /*  private OrGraph SetGraph()
         {
-            switch (tabControlGraphData.SelectedIndex)
-            {
-                case 0: return DataGraph.setTestGraphFirst();
-                case 1: return DataGraph.setTestGraphSixth();
-                case 2: return DataGraph.setTestGraphThird();
-                case 3: return DataGraph.setTestGraphForth();
-                case 4: return DataGraph.setTestGraphFifth();
-
-                default: return null;
-            }
-        }*/
+            //по идее инициализация графа должна быть здесь
+            FileReader f = new FileReader();
+            f.ReadFromFile("c:\\Users\\Kathelyss\\Desktop\\test.xml");
+        }
+      */
 
         /// <summary>
-        /// Устанавливием значения всех путей в визуализированное окошко
+        /// Устанавливием значения всех путей в визуализированное окошко.
         /// </summary>
         private void SetWaysValueText()
         {
