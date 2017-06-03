@@ -186,7 +186,7 @@ namespace MasonAlgorithm
         /// <summary>
         /// Возвращает несоприкасающиеся контура. Список циклов без повторений вершин.
         /// </summary>
-        /// <param name="Cycles">Список цыклов.</param>
+        /// <param name="Cycles">Список циклов.</param>
         /// <param name="k">Значение указывающее какоей количество несоприкасающихся вершин анализировать.</param>
         /// <returns></returns>
         List<DataSet[]> GetDifrent(List<DataSet> Cycles, int k)

@@ -20,6 +20,8 @@
             base.Dispose(disposing);
         }
 
+        OrGraph Graph; // Сформированный граф.
+
         #region Код, автоматически созданный конструктором форм Windows
 
         /// <summary>
@@ -40,42 +42,34 @@
             this.Text = "Алгоритм Мейсона";
             this.ResumeLayout(false);
 
+            FileReader reader = new FileReader();
+            Graph = reader.ReadFromFile("test.xml");
         }
 
         #endregion
 
 
 
-
-
         #region Воровство детектед
 
-        OrGraph graph; // заданный граф
-
         /// <summary>
-        /// здесь будет инициализация графа
+        /// Инициализация графа с помощью файла.
         /// </summary>
       /*  private OrGraph SetGraph()
         {
-            switch (tabControlGraphData.SelectedIndex)
-            {
-                case 0: return DataGraph.setTestGraphFirst();
-                case 1: return DataGraph.setTestGraphSixth();
-                case 2: return DataGraph.setTestGraphThird();
-                case 3: return DataGraph.setTestGraphForth();
-                case 4: return DataGraph.setTestGraphFifth();
-
-                default: return null;
-            }
-        }*/
+            //по идее инициализация графа должна быть здесь
+            FileReader reader = new FileReader();
+            Graph = reader.ReadFromFile("C:\\Users\\Kathelyss\\Desktop\\test.xml");
+        }
+      */
 
         /// <summary>
-        /// Устанавливием значения всех путей в визуализированное окошко
+        /// Устанавливием значения всех путей в визуализированное окошко.
         /// </summary>
         private void SetWaysValueText()
         {
           //  textBoxWays.Text = "";
-            foreach (var item in graph.getWays)
+            foreach (var item in Graph.getWays)
             {
             //    textBoxWays.Text += item.ToString() + Environment.NewLine;
             }
@@ -87,7 +81,7 @@
         private void SetCyclesValuesText()
         {
           //  textBoxCycles.Text = "";
-            foreach (var item in graph.getCycle)
+            foreach (var item in Graph.getCycle)
             {
           //      textBoxCycles.Text += item.ToString() + Environment.NewLine;
             }
@@ -98,7 +92,7 @@
         /// </summary>
         private void SetMaisonValue()
         {
-            Algorithm Maison = new Algorithm(graph);
+            Algorithm Maison = new Algorithm(Graph);
             // textBoxNumerator.Text = Maison.getNumerator();
             // textBoxDenominator.Text = Maison.getDenominator();
 
