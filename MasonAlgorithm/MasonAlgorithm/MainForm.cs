@@ -72,7 +72,7 @@ namespace MasonAlgorithm
         {
             OpenFileDialog dialog = new OpenFileDialog();
 
-            dialog.InitialDirectory = "c:\\";
+            dialog.InitialDirectory = Environment.CurrentDirectory;
             dialog.Filter = "xml files (*.xml)|*.xml";
             dialog.FilterIndex = 2;
             dialog.RestoreDirectory = true;
@@ -95,7 +95,7 @@ namespace MasonAlgorithm
         /// </summary>
         private void SetWaysValueText()
         {
-            Paths.Text = "Пути:" + Environment.NewLine;
+            Paths.Text = "Пути: " + Environment.NewLine;
             foreach (var item in graph.getWays)
             {
                 Paths.Text += item.ToString() + Environment.NewLine;
@@ -107,7 +107,7 @@ namespace MasonAlgorithm
         /// </summary>
         private void SetCyclesValuesText()
         {
-            Contours.Text = "Контуры:"+Environment.NewLine;
+            Contours.Text = "Контуры: "+Environment.NewLine;
             foreach (var item in graph.getCycle)
             {
                 Contours.Text += item.ToString() + Environment.NewLine;
