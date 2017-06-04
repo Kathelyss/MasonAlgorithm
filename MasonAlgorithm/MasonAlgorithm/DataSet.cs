@@ -6,17 +6,17 @@ using System.Text;
 namespace MasonAlgorithm
 {
     /// <summary>
-    /// Класс предназначенный, для отображения в памяти отдельного пути или контура.
+    /// Класс для операций над путями или контурами в графе
     /// </summary>
     class DataSet
     {
         /// <summary>
-        /// Цепочка вершин графа.
+        /// Список путей или контуров в графе
         /// </summary>
-        public List<Track> data { get; set; } = new List<Track>();
+        public List<Track> data { get; } = new List<Track>();
 
         /// <summary>
-        /// Строковое представление яцейки ОрГрафа.
+        /// Строковое представление пути или контура в графе
         /// </summary>
         public override string ToString()
         {
@@ -30,7 +30,7 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Математическое представление отдельного пути или контура, учитывающее знак.
+        /// Математическое представление отдельного пути или контура, учитывающее знак
         /// </summary>
         public string ConvertToString()
         {
@@ -42,7 +42,7 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Математическое представление отдельного пути или контура, не учитывающее знак.
+        /// Математическое представление отдельного пути или контура, не учитывающее знак
         /// </summary>
         public string Abs()
         {
@@ -51,37 +51,27 @@ namespace MasonAlgorithm
             return line;
         }
 
-        /// <summary>
-        /// Последний элемент последовательности.
-        /// </summary>
-        public Track Last { get { return data.Last(); } }
 
-        /// <summary>
-        /// Коструктор класса.
         public DataSet(List<Track> data)
         {
             this.data = new List<Track>(data);
         }
 
-        /// <summary>
-        /// Количество путей в контуре или прямом путе.
-        /// </summary>
-        public int Count { get { return data.Count; } }
 
         /// <summary>
-        /// Знак последовательности.
+        /// Знак пути или контура
         /// </summary>
         public int Sign
         {
             get
             {
                 if (ConvertToString().Contains("-")) return -1;
-                else return 1;
+                return 1;
             }
         }
 
         /// <summary>
-        /// Сравнивает некоторое множество путей или циклов, и возвращает те, которые не содержаться во втором объекте.
+        /// Сравнивает некоторое множество путей или циклов, и возвращает те, которые не содержаться во втором объекте
         /// </summary>
         public static DataSet WayWithoutCycles(List<DataSet> Cycles, DataSet Way)
         {
@@ -94,7 +84,7 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Сравнение двух последовательностей. Вернет true, если сравнивые элементы имеют хотя бы одну общую вершину.
+        /// Сравнение двух последовательностей. Вернет true, если сравниваемые элементы имеют хотя бы одну общую вершину
         /// </summary>
         static bool Equals(DataSet ValueOne, DataSet ValueTwo)
         {

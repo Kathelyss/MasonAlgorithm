@@ -5,27 +5,27 @@ using System.Linq;
 namespace MasonAlgorithm
 {
     /// <summary>
-    /// Класс, представляющий вершину графа.
+    /// Класс, представляющий вершину графа
     /// </summary>
     class Vertex
     {
         /// <summary>
-        /// Пути из вершины.
+        /// Пути, в которые входит вершина
         /// </summary>
         public List<Track> myWay;
 
         /// <summary>
-        /// Возвращает все пути, входящие в вершину.
+        /// Возвращает все пути, входящие в вершину
         /// </summary>
         public List<Track> inWay => myWay.Where((a) => a.end == this).ToList();
 
         /// <summary>
-        /// Возвращает все пути, исходящие из данной вершины.
+        /// Возвращает все пути, исходящие из данной вершины
         /// </summary>
         public List<Track> OutWay => myWay.Where((a) => a.begin == this).ToList();
 
         /// <summary>
-        /// Название верины.
+        /// Номер вершины
         /// </summary>
         string Name;
 

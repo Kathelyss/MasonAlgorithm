@@ -6,28 +6,25 @@ using System.Text;
 namespace MasonAlgorithm
 {
     /// <summary>
-    /// Класс, представляющий собой отдельный путь в графе.
+    /// Класс, представляющий собой отдельный путь или контур в графе
     /// </summary>
     class Track
     {
         /// <summary>
-        /// Вершины, которые начинаются из данного пути.
+        /// Вершина, из которой начинается путь
         /// </summary>
-        public Vertex begin { get; set; }
+        public Vertex begin { get;}
 
         /// <summary>
-        /// Вершины, которые заканчиваются из данного пути.
+        /// Вершина, в которую приходит путь
         /// </summary>
-        public Vertex end { get; set; }
+        public Vertex end { get; }
 
         /// <summary>
-        /// Передатояная функция пути.
+        /// Передаточная функция пути
         /// </summary>
-        public string PF { get; set; }
+        public string PF { get; }
 
-        /// <summary>
-        /// Конструктор, который инициализирует начальную, конечную вершину, соединяющюю путь и ПФ пути.
-        /// </summary>
         public Track(Vertex begin, Vertex end, string PF)
         {
             this.begin = begin;
@@ -39,7 +36,7 @@ namespace MasonAlgorithm
 
         public override string ToString()
         {
-            return begin.ToString() + " -> " + PF + " -> " + end.ToString();
+            return begin + " -> " + PF + " -> " + end;
         }
     }
 }

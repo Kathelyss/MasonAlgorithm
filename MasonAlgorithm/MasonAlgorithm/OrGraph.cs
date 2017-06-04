@@ -6,28 +6,34 @@ using System.Text;
 namespace MasonAlgorithm
 {
     /// <summary>
-    /// Класс, представляющий собой ОрГраф в памяти машины.
+    /// Класс, представляющий собой орграф
     /// </summary>
     class OrGraph
     {
         /// <summary>
-        /// Вершины графа.
+        /// Список вершин графа
         /// </summary>
-        /// <remarks>Пути спрятаны в вершинах.</remarks>
         List<Vertex> Points { get; set; }
 
         /// <summary>
-        /// Начальная вершина графа.
+        /// Начальная вершина графа
         /// </summary>
         Vertex begin { get; set; }
 
         /// <summary>
-        /// Конечная вершина графа.
+        /// Конечная вершина графа
         /// </summary>
         Vertex end { get; set; }
 
+        public OrGraph(List<Vertex> Points, Vertex begin, Vertex end)
+        {
+            this.Points = Points;
+            this.begin = begin;
+            this.end = end;
+        }
+
         /// <summary>
-        /// Получить пути графа.
+        /// Получить пути графа
         /// </summary>
         public List<DataSet> getWays
         {
@@ -42,24 +48,24 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Получить дополнительные пути из заданной точки.
+        /// Получить дополнительные пути из заданной точки
         /// </summary>
-        /// <param name="CurentWay">Список пройденных путей.</param>
-        /// <param name="CurPoint">Текущая вершина.</param>
+        /// <param name="CurentWay">Список пройденных путей</param>
+        /// <param name="CurPoint">Текущая вершина</param>
         /// <returns></returns>
         List<List<Track>> Ways(List<Track> CurentWay, Vertex CurPoint)
         {
-            ///Если пришли в ту точку в которой были, то дальше не идем.
+            //Если пришли в ту точку в которой были, то дальше не идем.
             if (CurentWay.Any((a) => a.begin == CurPoint)) return null;
 
-            ///Если пришли в конец отдаем путь.
+            //Если пришли в конец графа, то возвращаем путь
             if (CurPoint == end) return new List<List<Track>>() { CurentWay };
             else
             {
-                ///Тут храним пути из этой точки.
+                //Тут храним пути из этой точки.
                 var wayFromPoint = new List<List<Track>>();
 
-                ///Запускаем рекурсию на все пути из вершины.
+                //Запускаем рекурсию на все пути из вершины.
                 foreach (var a in CurPoint.OutWay)
                 {
                     var newWay = CurentWay.ToList();
@@ -72,7 +78,7 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Получить пути графа.
+        /// Получить циклы графа
         /// </summary>
         /// <returns></returns>
         public List<DataSet> getCycle
@@ -103,15 +109,15 @@ namespace MasonAlgorithm
         /// <returns></returns>
         List<List<Track>> Cycle(Vertex Start, List<Track> Curent_way, Vertex Curent_point)
         {
-            ///Если пришли в стартавую точку отдаем путь.
+            //Если пришли в стартовую точку, то возвращаем путь
             if (Curent_point == Start) return new List<List<Track>>() { Curent_way };
-            ///Если пришли в ту точку в которой были, то дальше не продолжаем.
+            //Если пришли в ту точку, в которой были, то дальше не продолжаем
             if (Curent_way.Any((a) => a.begin == Curent_point)) return null;
             else
             {
-                ///Тут храним пути из этой точки.
+                //Тут храним пути из этой точки.
                 var wayFromPoint = new List<List<Track>>();
-                ///Запускаем рекурсию на все пути из вершины.
+                //Запускаем рекурсию на все пути из вершины.
                 foreach (var a in Curent_point.OutWay)
                 {
                     var newWay = Curent_way.ToList();
@@ -124,7 +130,7 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Удаление дублированных циклов.
+        /// Удаление дублированных циклов
         /// </summary>
         List<List<Track>> RemoveEqiul(List<List<Track>> IN)
         {
@@ -140,7 +146,7 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Сравнение двух путей (циклов) на эквивалентность.
+        /// Сравнение двух путей (циклов) на эквивалентность
         /// </summary>
         bool eqiul(List<Track> T1, List<Track> T2)
         {
@@ -152,7 +158,7 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Сравнивает циклы графа на их пересечение.
+        /// Сравнивает циклы графа на их пересечение
         /// </summary>
         static bool AnySameRow(List<DataSet> Now, DataSet T1)
         {
@@ -164,7 +170,7 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Возвращает все множество несоприкасающихся циклов.
+        /// Возвращает все множество непересекающихся контуров
         /// </summary>
         public List<DataSet[]> DisjoinCycles
         {
@@ -184,10 +190,10 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Возвращает несоприкасающиеся контура. Список циклов без повторений вершин.
+        /// Возвращает непересекающиеся контура
         /// </summary>
-        /// <param name="Cycles">Список циклов.</param>
-        /// <param name="k">Значение указывающее какоей количество несоприкасающихся вершин анализировать.</param>
+        /// <param name="Cycles">Список циклов</param>
+        /// <param name="k">Значение, указывающее, какое количество несоприкасающихся вершин анализировать</param>
         /// <returns></returns>
         List<DataSet[]> GetDifrent(List<DataSet> Cycles, int k)
         {
@@ -203,10 +209,10 @@ namespace MasonAlgorithm
         /// <summary>
         /// Возвращает пару несоприкасающихся контуров.
         /// </summary>
-        /// <param name="Cycles">Список циклов.</param>
-        /// <param name="k">Сколько должно быть несоприкасающихся контуров.</param>
-        /// <param name="cur">Контура, которые уже записаны.</param>
-        /// <param name="j">С какого контура просматривать дальше.</param>
+        /// <param name="Cycles">Список циклов</param>
+        /// <param name="k">Сколько должно быть несоприкасающихся контуров</param>
+        /// <param name="cur">Контура, которые уже записаны</param>
+        /// <param name="j">С какого контура просматривать дальше</param>
         /// <returns></returns>
         List<DataSet[]> DC(List<DataSet> Cycles, int k, List<DataSet> cur, int j)
         {
@@ -223,16 +229,6 @@ namespace MasonAlgorithm
                 }
             }
             return rez;
-        }
-
-        /// <summary>
-        /// Конструктор ОрГрафа для инициализации
-        /// </summary>
-        public OrGraph(List<Vertex> Points, Vertex begin, Vertex end)
-        {
-            this.Points = Points;
-            this.begin = begin;
-            this.end = end;
         }
     }
 }
