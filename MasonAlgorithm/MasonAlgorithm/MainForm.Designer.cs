@@ -33,9 +33,11 @@
             this.Adress = new System.Windows.Forms.TextBox();
             this.W = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.Numerator = new System.Windows.Forms.Label();
+            this.Denominator = new System.Windows.Forms.Label();
             this.Contours = new System.Windows.Forms.Label();
             this.Paths = new System.Windows.Forms.Label();
-            this.Minors = new System.Windows.Forms.Label();
+            this.CHERTA = new System.Windows.Forms.Label();
             this.Compute = new System.Windows.Forms.Button();
             this.Adjacency_matrix = new System.Windows.Forms.TableLayoutPanel();
             this.panel2.SuspendLayout();
@@ -75,8 +77,9 @@
             // 
             // W
             // 
+            this.W.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.W.AutoSize = true;
-            this.W.Location = new System.Drawing.Point(63, 227);
+            this.W.Location = new System.Drawing.Point(6, 249);
             this.W.Name = "W";
             this.W.Size = new System.Drawing.Size(27, 13);
             this.W.TabIndex = 3;
@@ -86,41 +89,62 @@
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.Numerator);
+            this.panel2.Controls.Add(this.Denominator);
             this.panel2.Controls.Add(this.Contours);
             this.panel2.Controls.Add(this.Paths);
-            this.panel2.Controls.Add(this.Minors);
             this.panel2.Controls.Add(this.W);
-            this.panel2.Location = new System.Drawing.Point(333, 39);
+            this.panel2.Controls.Add(this.CHERTA);
+            this.panel2.Location = new System.Drawing.Point(333, 40);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(219, 320);
+            this.panel2.Size = new System.Drawing.Size(219, 318);
             this.panel2.TabIndex = 5;
+            // 
+            // Numerator
+            // 
+            this.Numerator.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Numerator.AutoSize = true;
+            this.Numerator.Location = new System.Drawing.Point(33, 231);
+            this.Numerator.Name = "Numerator";
+            this.Numerator.Size = new System.Drawing.Size(0, 13);
+            this.Numerator.TabIndex = 8;
+            // 
+            // Denominator
+            // 
+            this.Denominator.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Denominator.AutoSize = true;
+            this.Denominator.Location = new System.Drawing.Point(33, 267);
+            this.Denominator.Name = "Denominator";
+            this.Denominator.Size = new System.Drawing.Size(0, 13);
+            this.Denominator.TabIndex = 7;
             // 
             // Contours
             // 
             this.Contours.AutoSize = true;
-            this.Contours.Location = new System.Drawing.Point(7, 11);
+            this.Contours.Location = new System.Drawing.Point(5, 11);
             this.Contours.Name = "Contours";
-            this.Contours.Size = new System.Drawing.Size(51, 13);
+            this.Contours.Size = new System.Drawing.Size(53, 13);
             this.Contours.TabIndex = 6;
-            this.Contours.Text = "Контура:";
+            this.Contours.Text = "Контуры:";
             // 
             // Paths
             // 
+            this.Paths.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Paths.AutoSize = true;
-            this.Paths.Location = new System.Drawing.Point(7, 81);
+            this.Paths.Location = new System.Drawing.Point(4, 144);
             this.Paths.Name = "Paths";
             this.Paths.Size = new System.Drawing.Size(34, 13);
             this.Paths.TabIndex = 5;
             this.Paths.Text = "Пути:";
             // 
-            // Minors
+            // CHERTA
             // 
-            this.Minors.AutoSize = true;
-            this.Minors.Location = new System.Drawing.Point(7, 152);
-            this.Minors.Name = "Minors";
-            this.Minors.Size = new System.Drawing.Size(51, 13);
-            this.Minors.TabIndex = 4;
-            this.Minors.Text = "Миноры:";
+            this.CHERTA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.CHERTA.AutoSize = true;
+            this.CHERTA.Location = new System.Drawing.Point(33, 244);
+            this.CHERTA.Name = "CHERTA";
+            this.CHERTA.Size = new System.Drawing.Size(0, 13);
+            this.CHERTA.TabIndex = 9;
             // 
             // Compute
             // 
@@ -182,8 +206,10 @@
         private System.Windows.Forms.Button Compute;
         private System.Windows.Forms.Label Contours;
         private System.Windows.Forms.Label Paths;
-        private System.Windows.Forms.Label Minors;
         private System.Windows.Forms.TableLayoutPanel Adjacency_matrix;
+        private System.Windows.Forms.Label Numerator;
+        private System.Windows.Forms.Label Denominator;
+        private System.Windows.Forms.Label CHERTA;
     }
 }
 

@@ -27,16 +27,14 @@ namespace MasonAlgorithm
                         nodes.Add(new Vertex(i.ToString()));
                     
                     //проходим по каждой строке в графе
-                    int j = 0;
                     foreach (XElement row in doc.Root.Elements())
                     {
                         // и по каждой ячейке (PF)
                         foreach (XElement PF in row.Elements())
                             if (PF.Value != "0")
                             {
-                                nodes[j].myWay.Add(new Track(nodes[Convert.ToInt32(row.Attribute("id").Value)], nodes[Convert.ToInt32(PF.Attribute("id").Value)], PF.Value));
+                                new Track(nodes[Convert.ToInt32(row.Attribute("id").Value)], nodes[Convert.ToInt32(PF.Attribute("id").Value)], PF.Value);
                             }
-                        j++;
                     }
 
                     return new OrGraph(nodes, nodes[0], nodes[nodes.Count - 1]);

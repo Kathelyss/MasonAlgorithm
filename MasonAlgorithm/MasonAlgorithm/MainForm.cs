@@ -49,7 +49,7 @@ namespace MasonAlgorithm
                     for (int j = 0; j < graph.Points.Count;j++)
                     {
                         Adjacency_matrix.GetControlFromPosition(j, i).Text = "0";
-                        foreach (Track t in graph.Points[i].myWay)
+                        foreach (Track t in graph.Points[i].OutWay)
                         {
                             if (t.end == graph.Points[j])
                             {
@@ -83,9 +83,9 @@ namespace MasonAlgorithm
 
         private void Compute_Click(object sender, EventArgs e)
         {
-            /*
-             * Тут какая-то логика о котороя я пока не знаю.
-             */
+            SetCyclesValuesText();
+            SetWaysValueText();
+            SetMaisonValue();
         }
 
         /// <summary>
@@ -93,10 +93,10 @@ namespace MasonAlgorithm
         /// </summary>
         private void SetWaysValueText()
         {
-            textBoxWays.Text = "";
+            Paths.Text = "Пути:" + Environment.NewLine;
             foreach (var item in graph.getWays)
             {
-                textBoxWays.Text += item.ToString() + Environment.NewLine;
+                Paths.Text += item.ToString() + Environment.NewLine;
             }
         }
 
@@ -105,10 +105,10 @@ namespace MasonAlgorithm
         /// </summary>
         private void SetCyclesValuesText()
         {
-            textBoxCycles.Text = "";
+            Contours.Text = "Контуры:"+Environment.NewLine;
             foreach (var item in graph.getCycle)
             {
-                textBoxCycles.Text += item.ToString() + Environment.NewLine;
+                Contours.Text += item.ToString() + Environment.NewLine;
             }
         }
 
@@ -118,9 +118,9 @@ namespace MasonAlgorithm
         private void SetMaisonValue()
         {
             Algorithm Maison = new Algorithm(graph);
-            textBoxNumerator.Text = Maison.getNumerator();
-            textBoxDenominator.Text = Maison.getDenominator();
-
+            Numerator.Text = Maison.GetNumerator();
+            Denominator.Text = Maison.GetDenominator();
+            CHERTA.Text = new String('_',Numerator.Text.Length);
         }
     }
 }
