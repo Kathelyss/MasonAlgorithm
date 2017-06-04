@@ -16,7 +16,7 @@ namespace MasonAlgorithm
         /// </summary>
         Algorithm Mason = null;
 
-        OrGraph graph = null;
+        Graph graph = null;
 
         public MainForm()
         {
@@ -51,11 +51,11 @@ namespace MasonAlgorithm
                     for (int j = 0; j < graph.Points.Count;j++)
                     {
                         Adjacency_matrix.GetControlFromPosition(j, i).Text = "0";
-                        foreach (Track t in graph.Points[i].OutWay)
+                        foreach (Track t in graph.Points[i].OutWaysFromVertex)
                         {
                             if (t.end == graph.Points[j])
                             {
-                                Adjacency_matrix.GetControlFromPosition(j, i).Text = t.PF;
+                                Adjacency_matrix.GetControlFromPosition(j, i).Text = t.TransferFunction;
                             }
                         }
                     }
@@ -96,9 +96,9 @@ namespace MasonAlgorithm
         private void SetWaysValueText()
         {
             Paths.Text = "Пути: " + Environment.NewLine;
-            foreach (var item in graph.getWays)
+            foreach (var item in graph.GetAllWays)
             {
-                Paths.Text += item.ToString() + Environment.NewLine;
+                Paths.Text += item + Environment.NewLine;
             }
         }
 
@@ -108,9 +108,9 @@ namespace MasonAlgorithm
         private void SetCyclesValuesText()
         {
             Contours.Text = "Контуры: "+Environment.NewLine;
-            foreach (var item in graph.getCycle)
+            foreach (var item in graph.GetAllContours)
             {
-                Contours.Text += item.ToString() + Environment.NewLine;
+                Contours.Text += item + Environment.NewLine;
             }
         }
 

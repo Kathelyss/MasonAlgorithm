@@ -13,9 +13,9 @@ namespace MasonAlgorithm
         /// <summary>
         /// Граф
         /// </summary>
-        public OrGraph Graph { get; }
+        private Graph Graph { get; }
 
-        public Algorithm(OrGraph Graph)
+        public Algorithm(Graph Graph)
         {
             this.Graph = Graph;
         }
@@ -27,27 +27,27 @@ namespace MasonAlgorithm
         public string GetNumerator()
         {
             string lineWay = "";
-            List<DataSet> Cycles = Graph.getCycle.ToList(); //Все контура графа
-            List<DataSet> Ways = Graph.getWays.ToList(); //Все пути графа
+            List<DataSet> Contours = Graph.GetAllContours.ToList(); //Все контура графа
+            List<DataSet> Ways = Graph.GetAllWays.ToList(); //Все пути графа
             DataSet temp;
             bool check = true;
             foreach (DataSet item in Ways) //Основной цикл
             {
-                if ((temp = DataSet.WayWithoutCycles(Cycles, item)) != null)
+                if ((temp = DataSet.ContoursWithoutWay(Contours, item)) != null)
                 {
                     //Записываем путь, умноженный на минор пути
-                    lineWay += (temp.Sign * -1 < 0 ? "-" : "+") + "(" + item.ConvertToString() + ") * " + "( 1 " + (temp.Sign * -1 < 0 ? "-" : "+") + " " + temp.Abs() + " )";
+                    lineWay += (temp.Sign * -1 < 0 ? "-" : "+") + "(" + item.ConvertToString() + ") * " + "( 1 " + (temp.Sign * -1 < 0 ? "-" : "+") + " " + temp.AbsValue() + " )";
                 }
                 else
                 {
                     if (check)
                     {
-                        lineWay += item.Abs();
+                        lineWay += item.AbsValue();
                         check = false;
                     }
                     else
                     {
-                        lineWay += (item.Sign < 0 ? " - " : " + ") + item.Abs();
+                        lineWay += (item.Sign < 0 ? " - " : " + ") + item.AbsValue();
 
                     }
                 }
@@ -61,11 +61,11 @@ namespace MasonAlgorithm
         public string GetDenominator()
         {
             string determinant = "1";
-            foreach (DataSet item in Graph.getCycle) //цикл по всем контурам
+            foreach (DataSet item in Graph.GetAllContours) //цикл по всем контурам
             {
                 if (item.Sign < 0) determinant += " + "; //Если контур со знаком "-"
                 else determinant += " - ";
-                determinant += item.Abs();
+                determinant += item.AbsValue();
             }
             //Возвращаем полный определитель с учетом пар, троек... несоприкасающихся контуров
             return determinant + DisjoinCycles();
@@ -86,11 +86,11 @@ namespace MasonAlgorithm
                     Sign *= Convert.ToInt32(Math.Pow(-1, item.Count())) * -1 * temp.Sign;//Конечный знак
                     if (temp == item.Last())
                     {
-                        testValue += temp.Abs();
+                        testValue += temp.AbsValue();
                     }
                     else
                     {
-                        testValue += temp.Abs() + "*";
+                        testValue += temp.AbsValue() + "*";
                     }
                 }
                 if (Sign < 0) result += " - " + testValue;

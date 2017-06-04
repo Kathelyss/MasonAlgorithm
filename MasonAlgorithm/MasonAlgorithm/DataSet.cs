@@ -13,7 +13,7 @@ namespace MasonAlgorithm
         /// <summary>
         /// Список путей или контуров в графе
         /// </summary>
-        public List<Track> data { get; } = new List<Track>();
+        public List<Track> Data { get; } = new List<Track>();
 
         /// <summary>
         /// Строковое представление пути или контура в графе
@@ -21,10 +21,10 @@ namespace MasonAlgorithm
         public override string ToString()
         {
             string res = "";
-            foreach (Track item in data)
+            foreach (Track item in Data)
             {
-                if (item == data.Last()) res += item.PF;
-                else res += item.PF + " -> ";
+                if (item == Data.Last()) res += item.TransferFunction;
+                else res += item.TransferFunction + " -> ";
             }
             return res;
         }
@@ -44,7 +44,7 @@ namespace MasonAlgorithm
         /// <summary>
         /// Математическое представление отдельного пути или контура, не учитывающее знак
         /// </summary>
-        public string Abs()
+        public string AbsValue()
         {
             string line = ConvertToString();
             if (line.Contains("-")) line = line.Replace("-", "");
@@ -54,7 +54,7 @@ namespace MasonAlgorithm
 
         public DataSet(List<Track> data)
         {
-            this.data = new List<Track>(data);
+            this.Data = new List<Track>(data);
         }
 
 
@@ -73,9 +73,9 @@ namespace MasonAlgorithm
         /// <summary>
         /// Сравнивает некоторое множество путей или циклов, и возвращает те, которые не содержаться во втором объекте
         /// </summary>
-        public static DataSet WayWithoutCycles(List<DataSet> Cycles, DataSet Way)
+        public static DataSet ContoursWithoutWay(List<DataSet> Contours, DataSet Way)
         {
-            List<DataSet> result = Cycles.ToList();
+            List<DataSet> result = Contours.ToList();
             foreach (var item in result)
             {
                 if (!Equals(item, Way)) return item;
@@ -86,11 +86,11 @@ namespace MasonAlgorithm
         /// <summary>
         /// Сравнение двух последовательностей. Вернет true, если сравниваемые элементы имеют хотя бы одну общую вершину
         /// </summary>
-        static bool Equals(DataSet ValueOne, DataSet ValueTwo)
+        static bool Equals(DataSet first, DataSet second)
         {
-            foreach (Track item in ValueOne.data)
+            foreach (Track item in first.Data)
             {
-                foreach (Track temp in ValueTwo.data)
+                foreach (Track temp in second.Data)
                 {
                     if (item.end == temp.end) return true;
                 }
