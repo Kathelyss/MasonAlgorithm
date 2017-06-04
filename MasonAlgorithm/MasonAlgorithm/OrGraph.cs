@@ -13,7 +13,7 @@ namespace MasonAlgorithm
         /// <summary>
         /// Список вершин графа
         /// </summary>
-        List<Vertex> Points { get; set; }
+        public List<Vertex> Points { get; set; }
 
         /// <summary>
         /// Начальная вершина графа
