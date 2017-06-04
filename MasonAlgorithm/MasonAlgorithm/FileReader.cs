@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Linq;
+using System.IO;
+using System;
 
 namespace MasonAlgorithm
 {
@@ -10,28 +12,35 @@ namespace MasonAlgorithm
         /// </summary>
         /// <param name="filePath">Пуль к исходному файлу (.xml) в проекте (bin\Debug).</param>
         /// <returns>Возвращает полученный граф.</returns>
-        public OrGraph ReadFromFile(string filePath)
+        public static OrGraph ReadFromFile(string filePath)
         {
             //читаем данные из файла
-            XDocument doc = XDocument.Load(filePath);
-            int countOfNodes = CheckDimensions(doc);
-            if (countOfNodes > 0)
+            if (File.Exists(filePath))
             {
-                // создание графа с указанным числом вершин
-                List<Vertex> nodes = new List<Vertex>();
-                for (int i = 0; i < countOfNodes; i++)
-                    nodes.Add(new Vertex(i.ToString()));                
-
-                //проходим по каждой строке в графе
-                foreach (XElement row in doc.Root.Elements())
+                XDocument doc = XDocument.Load(filePath);
+                int countOfNodes = CheckDimensions(doc);
+                if (countOfNodes > 0)
                 {
-                    // и по каждой ячейке (PF)
-                    foreach (XElement PF in row.Elements())
-                        if (PF.Value != "0")
-                            new Track(new Vertex(row.Attribute("id").Value), new Vertex(PF.Attribute("id").Value), PF.Value);
-                }
+                    // создание графа с указанным числом вершин
+                    List<Vertex> nodes = new List<Vertex>();
+                    for (int i = 0; i < countOfNodes; i++)
+                        nodes.Add(new Vertex(i.ToString()));
+                    
+                    //проходим по каждой строке в графе
+                    int j = 0;
+                    foreach (XElement row in doc.Root.Elements())
+                    {
+                        // и по каждой ячейке (PF)
+                        foreach (XElement PF in row.Elements())
+                            if (PF.Value != "0")
+                            {
+                                nodes[j].myWay.Add(new Track(nodes[Convert.ToInt32(row.Attribute("id").Value)], nodes[Convert.ToInt32(PF.Attribute("id").Value)], PF.Value));
+                            }
+                        j++;
+                    }
 
-                return new OrGraph(nodes, nodes[0], nodes[nodes.Count - 1]);
+                    return new OrGraph(nodes, nodes[0], nodes[nodes.Count - 1]);
+                }
             }
             return null;
         }
@@ -41,7 +50,7 @@ namespace MasonAlgorithm
         /// </summary>
         /// <param name="doc"></param>
         /// <returns>Возвращает 0, если размерности не совпадают и размерность, если совпадают.</returns>
-        int CheckDimensions(XDocument doc)
+        static int CheckDimensions(XDocument doc)
         {
             int rows = 0;
             // считаем количество строк

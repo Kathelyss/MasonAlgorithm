@@ -14,7 +14,7 @@ namespace MasonAlgorithm
         /// Вершины графа.
         /// </summary>
         /// <remarks>Пути спрятаны в вершинах.</remarks>
-        List<Vertex> Points { get; set; }
+        public List<Vertex> Points { get; set; }
 
         /// <summary>
         /// Начальная вершина графа.
