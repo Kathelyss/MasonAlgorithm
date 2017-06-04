@@ -28,6 +28,8 @@ namespace MasonAlgorithm
             graph = FileReader.ReadFromFile(Adress.Text);
             if(graph!=null)
             {
+                Adjacency_matrix.Controls.Clear();
+
                 Mason = new Algorithm(graph);
                 Adjacency_matrix.RowCount = graph.Points.Count;
                 Adjacency_matrix.ColumnCount = graph.Points.Count;
