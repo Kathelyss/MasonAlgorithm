@@ -16,6 +16,8 @@ namespace MasonAlgorithm
         /// </summary>
         Algorithm Mason = null;
 
+        OrGraph graph = null;
+
         public MainForm()
         {
             InitializeComponent();
@@ -23,7 +25,7 @@ namespace MasonAlgorithm
 
         private void Open_Click(object sender, EventArgs e)
         {
-            OrGraph graph = FileReader.ReadFromFile(Adress.Text);
+            graph = FileReader.ReadFromFile(Adress.Text);
             if(graph!=null)
             {
                 Mason = new Algorithm(graph);
@@ -84,6 +86,41 @@ namespace MasonAlgorithm
             /*
              * Тут какая-то логика о котороя я пока не знаю.
              */
+        }
+
+        /// <summary>
+        /// Устанавливием значения всех путей в визуализированное окошко.
+        /// </summary>
+        private void SetWaysValueText()
+        {
+            textBoxWays.Text = "";
+            foreach (var item in graph.getWays)
+            {
+                textBoxWays.Text += item.ToString() + Environment.NewLine;
+            }
+        }
+
+        /// <summary>
+        /// Устанавливием значения всех контуров в визуализированное окошко.
+        /// </summary>
+        private void SetCyclesValuesText()
+        {
+            textBoxCycles.Text = "";
+            foreach (var item in graph.getCycle)
+            {
+                textBoxCycles.Text += item.ToString() + Environment.NewLine;
+            }
+        }
+
+        /// <summary>
+        /// Получение у установка передаточной функции графа.
+        /// </summary>
+        private void SetMaisonValue()
+        {
+            Algorithm Maison = new Algorithm(graph);
+            textBoxNumerator.Text = Maison.getNumerator();
+            textBoxDenominator.Text = Maison.getDenominator();
+
         }
     }
 }
