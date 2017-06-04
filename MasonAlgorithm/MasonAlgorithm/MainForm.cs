@@ -64,6 +64,7 @@ namespace MasonAlgorithm
             else
             {
                 Mason = null;
+                graph = null;
                 MessageBox.Show("File doesnt exist", "", MessageBoxButtons.OK);
             }
         }
@@ -85,9 +86,16 @@ namespace MasonAlgorithm
 
         private void Compute_Click(object sender, EventArgs e)
         {
-            SetCyclesValuesText();
-            SetWaysValueText();
-            SetMaisonValue();
+            if (Mason != null && graph != null)
+            {
+                SetCyclesValuesText();
+                SetWaysValueText();
+                SetMaisonValue();
+            }
+            else
+            {
+                MessageBox.Show("No file loaded", "", MessageBoxButtons.OK);
+            }
         }
 
         /// <summary>
@@ -122,7 +130,19 @@ namespace MasonAlgorithm
             Algorithm Maison = new Algorithm(graph);
             Numerator.Text = Maison.GetNumerator();
             Denominator.Text = Maison.GetDenominator();
-            CHERTA.Text = new String('_',Numerator.Text.Length);
+            if (Numerator.Text.Length > Denominator.Text.Length)
+            {
+                CHERTA.Text = new String('_', Numerator.Text.Length);
+            }
+            else
+            {
+                CHERTA.Text = new String('_', Denominator.Text.Length);
+            }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

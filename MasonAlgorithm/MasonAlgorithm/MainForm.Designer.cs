@@ -40,13 +40,17 @@
             this.CHERTA = new System.Windows.Forms.Label();
             this.Compute = new System.Windows.Forms.Button();
             this.Adjacency_matrix = new System.Windows.Forms.TableLayoutPanel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel2.SuspendLayout();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Browse
             // 
             this.Browse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Browse.Location = new System.Drawing.Point(391, 11);
+            this.Browse.Location = new System.Drawing.Point(388, 11);
             this.Browse.Name = "Browse";
             this.Browse.Size = new System.Drawing.Size(32, 23);
             this.Browse.TabIndex = 0;
@@ -57,7 +61,7 @@
             // Open
             // 
             this.Open.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Open.Location = new System.Drawing.Point(429, 11);
+            this.Open.Location = new System.Drawing.Point(426, 11);
             this.Open.Name = "Open";
             this.Open.Size = new System.Drawing.Size(56, 23);
             this.Open.TabIndex = 1;
@@ -71,7 +75,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Adress.Location = new System.Drawing.Point(9, 12);
             this.Adress.Name = "Adress";
-            this.Adress.Size = new System.Drawing.Size(376, 20);
+            this.Adress.Size = new System.Drawing.Size(373, 20);
             this.Adress.TabIndex = 2;
             this.Adress.Text = "Enter your .xml file address...";
             // 
@@ -79,7 +83,7 @@
             // 
             this.W.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.W.AutoSize = true;
-            this.W.Location = new System.Drawing.Point(6, 249);
+            this.W.Location = new System.Drawing.Point(6, 229);
             this.W.Name = "W";
             this.W.Size = new System.Drawing.Size(27, 13);
             this.W.TabIndex = 3;
@@ -87,24 +91,26 @@
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.Numerator);
             this.panel2.Controls.Add(this.Denominator);
             this.panel2.Controls.Add(this.Contours);
             this.panel2.Controls.Add(this.Paths);
             this.panel2.Controls.Add(this.W);
             this.panel2.Controls.Add(this.CHERTA);
-            this.panel2.Location = new System.Drawing.Point(333, 40);
+            this.panel2.Location = new System.Drawing.Point(3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(219, 318);
+            this.panel2.Size = new System.Drawing.Size(196, 298);
             this.panel2.TabIndex = 5;
             // 
             // Numerator
             // 
             this.Numerator.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Numerator.AutoSize = true;
-            this.Numerator.Location = new System.Drawing.Point(33, 231);
+            this.Numerator.Location = new System.Drawing.Point(33, 211);
             this.Numerator.Name = "Numerator";
             this.Numerator.Size = new System.Drawing.Size(0, 13);
             this.Numerator.TabIndex = 8;
@@ -113,7 +119,7 @@
             // 
             this.Denominator.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Denominator.AutoSize = true;
-            this.Denominator.Location = new System.Drawing.Point(33, 267);
+            this.Denominator.Location = new System.Drawing.Point(33, 247);
             this.Denominator.Name = "Denominator";
             this.Denominator.Size = new System.Drawing.Size(0, 13);
             this.Denominator.TabIndex = 7;
@@ -131,7 +137,7 @@
             // 
             this.Paths.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Paths.AutoSize = true;
-            this.Paths.Location = new System.Drawing.Point(4, 144);
+            this.Paths.Location = new System.Drawing.Point(4, 134);
             this.Paths.Name = "Paths";
             this.Paths.Size = new System.Drawing.Size(34, 13);
             this.Paths.TabIndex = 5;
@@ -141,7 +147,7 @@
             // 
             this.CHERTA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.CHERTA.AutoSize = true;
-            this.CHERTA.Location = new System.Drawing.Point(33, 244);
+            this.CHERTA.Location = new System.Drawing.Point(33, 224);
             this.CHERTA.Name = "CHERTA";
             this.CHERTA.Size = new System.Drawing.Size(0, 13);
             this.CHERTA.TabIndex = 9;
@@ -149,7 +155,7 @@
             // Compute
             // 
             this.Compute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Compute.Location = new System.Drawing.Point(491, 11);
+            this.Compute.Location = new System.Drawing.Point(488, 11);
             this.Compute.Name = "Compute";
             this.Compute.Size = new System.Drawing.Size(61, 23);
             this.Compute.TabIndex = 6;
@@ -162,35 +168,58 @@
             this.Adjacency_matrix.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.Adjacency_matrix.BackColor = System.Drawing.Color.White;
             this.Adjacency_matrix.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.Adjacency_matrix.ColumnCount = 2;
             this.Adjacency_matrix.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.Adjacency_matrix.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.Adjacency_matrix.Location = new System.Drawing.Point(9, 38);
+            this.Adjacency_matrix.Location = new System.Drawing.Point(3, 3);
             this.Adjacency_matrix.Name = "Adjacency_matrix";
             this.Adjacency_matrix.RowCount = 2;
             this.Adjacency_matrix.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.Adjacency_matrix.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.Adjacency_matrix.Size = new System.Drawing.Size(318, 320);
+            this.Adjacency_matrix.Size = new System.Drawing.Size(331, 294);
             this.Adjacency_matrix.TabIndex = 7;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(9, 38);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.Adjacency_matrix);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.panel2);
+            this.splitContainer1.Size = new System.Drawing.Size(540, 300);
+            this.splitContainer1.SplitterDistance = 337;
+            this.splitContainer1.TabIndex = 8;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(564, 370);
-            this.Controls.Add(this.Adjacency_matrix);
+            this.BackColor = System.Drawing.Color.Gainsboro;
+            this.ClientSize = new System.Drawing.Size(561, 350);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.Compute);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.Adress);
             this.Controls.Add(this.Open);
             this.Controls.Add(this.Browse);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Text = "Алгоритм Мейсона";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,6 +239,7 @@
         private System.Windows.Forms.Label Numerator;
         private System.Windows.Forms.Label Denominator;
         private System.Windows.Forms.Label CHERTA;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
 
