@@ -11,9 +11,79 @@ namespace MasonAlgorithm
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Тут хранится класс алгоритма.
+        /// </summary>
+        Algorithm Mason = null;
+
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void Open_Click(object sender, EventArgs e)
+        {
+            OrGraph graph = FileReader.ReadFromFile(Adress.Text);
+            if(graph!=null)
+            {
+                Mason = new Algorithm(graph);
+                Adjacency_matrix.RowCount = graph.Points.Count;
+                Adjacency_matrix.ColumnCount = graph.Points.Count;
+                Adjacency_matrix.RowStyles.Clear();
+                Adjacency_matrix.ColumnStyles.Clear();
+
+                for (int i =0; i < graph.Points.Count;i++)
+                {
+                    Adjacency_matrix.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / graph.Points.Count));
+                    Adjacency_matrix.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100 / graph.Points.Count));
+                    for (int j = 0; j < graph.Points.Count; j++)
+                    {
+                        Adjacency_matrix.Controls.Add(new Label(), i, j);
+                    }
+                }
+
+                for(int i = 0; i < graph.Points.Count;i++)
+                {
+                    for (int j = 0; j < graph.Points.Count;j++)
+                    {
+                        Adjacency_matrix.GetControlFromPosition(j, i).Text = "0";
+                        foreach (Track t in graph.Points[i].myWay)
+                        {
+                            if (t.end == graph.Points[j])
+                            {
+                                Adjacency_matrix.GetControlFromPosition(j, i).Text = t.PF;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Mason = null;
+                MessageBox.Show("File doesnt exist", "", MessageBoxButtons.OK);
+            }
+        }
+
+        private void Browse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+
+            dialog.InitialDirectory = "c:\\";
+            dialog.Filter = "xml files (*.xml)|*.xml";
+            dialog.FilterIndex = 2;
+            dialog.RestoreDirectory = true;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                Adress.Text = dialog.FileName;
+            }
+        }
+
+        private void Compute_Click(object sender, EventArgs e)
+        {
+            /*
+             * Тут какая-то логика о котороя я пока не знаю.
+             */
         }
     }
 }

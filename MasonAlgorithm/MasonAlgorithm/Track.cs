@@ -30,8 +30,8 @@ namespace MasonAlgorithm
             this.begin = begin;
             this.end = end;
             this.PF = PF;
-            begin.myWay.Add(this);
-            end.myWay.Add(this);
+            //begin.myWay.Add(this);
+            //end.myWay.Add(this);
         }
 
         public override string ToString()
