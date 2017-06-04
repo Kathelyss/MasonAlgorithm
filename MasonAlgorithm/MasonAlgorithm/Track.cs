@@ -23,20 +23,20 @@ namespace MasonAlgorithm
         /// <summary>
         /// Передаточная функция пути
         /// </summary>
-        public string PF { get; }
+        public string TransferFunction { get; }
 
-        public Track(Vertex begin, Vertex end, string PF)
+        public Track(Vertex begin, Vertex end, string TF)
         {
             this.begin = begin;
             this.end = end;
-            this.PF = PF;
-            begin.myWay.Add(this);
-            end.myWay.Add(this);
+            this.TransferFunction = TF;
+            begin.Ways.Add(this);
+            end.Ways.Add(this);
         }
 
         public override string ToString()
         {
-            return begin + " -> " + PF + " -> " + end;
+            return begin + " -> " + TransferFunction + " -> " + end;
         }
     }
 }

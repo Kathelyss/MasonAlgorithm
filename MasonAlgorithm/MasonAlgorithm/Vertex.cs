@@ -12,17 +12,12 @@ namespace MasonAlgorithm
         /// <summary>
         /// Пути, в которые входит вершина
         /// </summary>
-        public List<Track> myWay;
-
-        /// <summary>
-        /// Возвращает все пути, входящие в вершину
-        /// </summary>
-        public List<Track> inWay => myWay.Where((a) => a.end == this).ToList();
+        public List<Track> Ways;
 
         /// <summary>
         /// Возвращает все пути, исходящие из данной вершины
         /// </summary>
-        public List<Track> OutWay => myWay.Where((a) => a.begin == this).ToList();
+        public List<Track> OutWaysFromVertex => Ways.Where((a) => a.begin == this).ToList();
 
         /// <summary>
         /// Номер вершины
@@ -32,7 +27,7 @@ namespace MasonAlgorithm
         public Vertex(string Name)
         {
             this.Name = Name;
-            myWay = new List<Track>();
+            Ways = new List<Track>();
         }
 
         public override string ToString()

@@ -6,26 +6,26 @@ using System.Text;
 namespace MasonAlgorithm
 {
     /// <summary>
-    /// Класс, представляющий собой орграф
+    /// Класс, представляющий собой граф
     /// </summary>
-    class OrGraph
+    class Graph
     {
         /// <summary>
         /// Список вершин графа
         /// </summary>
-        public List<Vertex> Points { get; set; }
+        public List<Vertex> Points { get; }
 
         /// <summary>
         /// Начальная вершина графа
         /// </summary>
-        Vertex begin { get; set; }
+        Vertex begin { get; }
 
         /// <summary>
         /// Конечная вершина графа
         /// </summary>
-        Vertex end { get; set; }
+        Vertex end { get;}
 
-        public OrGraph(List<Vertex> Points, Vertex begin, Vertex end)
+        public Graph(List<Vertex> Points, Vertex begin, Vertex end)
         {
             this.Points = Points;
             this.begin = begin;
@@ -35,12 +35,12 @@ namespace MasonAlgorithm
         /// <summary>
         /// Получить пути графа
         /// </summary>
-        public List<DataSet> getWays
+        public List<DataSet> GetAllWays
         {
             get
             {
                 List<List<Track>> Ways = new List<List<Track>>();
-                foreach (Track a in begin.OutWay) Ways.AddRange(this.Ways(new List<Track> { a }, a.end));
+                foreach (Track a in begin.OutWaysFromVertex) Ways.AddRange(this.Ways(new List<Track> { a }, a.end));
                 List<DataSet> data = new List<DataSet>();
                 foreach (List<Track> item in Ways) data.Add(new DataSet(item));
                 return data;
@@ -66,7 +66,7 @@ namespace MasonAlgorithm
                 var wayFromPoint = new List<List<Track>>();
 
                 //Запускаем рекурсию на все пути из вершины.
-                foreach (var a in CurPoint.OutWay)
+                foreach (var a in CurPoint.OutWaysFromVertex)
                 {
                     var newWay = CurentWay.ToList();
                     newWay.Add(a);
@@ -78,17 +78,17 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Получить циклы графа
+        /// Получить контуры графа
         /// </summary>
         /// <returns></returns>
-        public List<DataSet> getCycle
+        public List<DataSet> GetAllContours
         {
             get
             {
                 List<List<Track>> Cycles = new List<List<Track>>();
                 foreach (var a in Points)
                 {
-                    foreach (var b in a.OutWay)
+                    foreach (var b in a.OutWaysFromVertex)
                     {
                         Cycles.AddRange(Cycle(a, new List<Track>() { b }, b.end));
                     }
@@ -101,26 +101,26 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Получить дополнительные пути из заданной точки.
+        /// Получить дополнительные пути из заданной точки
         /// </summary>
-        /// <param name="Start">Начальная вершина.</param>
-        /// <param name="Curent_way">Список пройденных путей.</param>
-        /// <param name="Curent_point">Текущая вершина.</param>
+        /// <param name="Start">Начальная вершина</param>
+        /// <param name="Current_way">Список пройденных путей</param>
+        /// <param name="Current_point">Текущая вершина</param>
         /// <returns></returns>
-        List<List<Track>> Cycle(Vertex Start, List<Track> Curent_way, Vertex Curent_point)
+        List<List<Track>> Cycle(Vertex Start, List<Track> Current_way, Vertex Current_point)
         {
             //Если пришли в стартовую точку, то возвращаем путь
-            if (Curent_point == Start) return new List<List<Track>>() { Curent_way };
+            if (Current_point == Start) return new List<List<Track>>() { Current_way };
             //Если пришли в ту точку, в которой были, то дальше не продолжаем
-            if (Curent_way.Any((a) => a.begin == Curent_point)) return null;
+            if (Current_way.Any((a) => a.begin == Current_point)) return null;
             else
             {
                 //Тут храним пути из этой точки.
                 var wayFromPoint = new List<List<Track>>();
                 //Запускаем рекурсию на все пути из вершины.
-                foreach (var a in Curent_point.OutWay)
+                foreach (var a in Current_point.OutWaysFromVertex)
                 {
-                    var newWay = Curent_way.ToList();
+                    var newWay = Current_way.ToList();
                     newWay.Add(a);
                     var Way = Cycle(Start, newWay, a.end);
                     if (Way != null) wayFromPoint.AddRange(Way);
@@ -158,13 +158,13 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Сравнивает циклы графа на их пересечение
+        /// Сравнивает контуры графа на их пересечение
         /// </summary>
         static bool AnySameRow(List<DataSet> Now, DataSet T1)
         {
-            foreach (var f in T1.data)
+            foreach (var f in T1.Data)
             {
-                if (Now.Any((a) => a.data.Any((b) => b.end == f.end))) return true;
+                if (Now.Any((a) => a.Data.Any((b) => b.end == f.end))) return true;
             }
             return false;
         }
@@ -178,9 +178,9 @@ namespace MasonAlgorithm
             {
                 List<DataSet[]> disjoinCycles = new List<DataSet[]>();
                 int k = 2;
-                while (GetDifrent(getCycle, k).Count != 0)
+                while (GetDisjoinContours(GetAllContours, k).Count != 0)
                 {
-                    foreach (var item in GetDifrent(getCycle, k++))
+                    foreach (var item in GetDisjoinContours(GetAllContours, k++))
                     {
                         disjoinCycles.Add(item);
                     }
@@ -190,42 +190,42 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Возвращает непересекающиеся контура
+        /// Возвращает пары, тройки... непересекающихся контуров
         /// </summary>
-        /// <param name="Cycles">Список циклов</param>
+        /// <param name="Contours">Список циклов</param>
         /// <param name="k">Значение, указывающее, какое количество несоприкасающихся вершин анализировать</param>
         /// <returns></returns>
-        List<DataSet[]> GetDifrent(List<DataSet> Cycles, int k)
+        List<DataSet[]> GetDisjoinContours(List<DataSet> Contours, int k)
         {
             List<DataSet[]> Res = new List<DataSet[]>();
-            for (int i = 0; i < Cycles.Count; i++)
+            for (int i = 0; i < Contours.Count; i++)
             {
-                var check = new List<DataSet>() { Cycles[i] };
-                Res.AddRange(DC(Cycles, k, check, i));
+                var check = new List<DataSet>() { Contours[i] };
+                Res.AddRange(DC(Contours, k, check, i));
             }
             return Res;
         }
 
         /// <summary>
-        /// Возвращает пару несоприкасающихся контуров.
+        /// Возвращает пару несоприкасающихся контуров
         /// </summary>
-        /// <param name="Cycles">Список циклов</param>
+        /// <param name="Contours">Список циклов</param>
         /// <param name="k">Сколько должно быть несоприкасающихся контуров</param>
         /// <param name="cur">Контура, которые уже записаны</param>
         /// <param name="j">С какого контура просматривать дальше</param>
         /// <returns></returns>
-        List<DataSet[]> DC(List<DataSet> Cycles, int k, List<DataSet> cur, int j)
+        List<DataSet[]> DC(List<DataSet> Contours, int k, List<DataSet> cur, int j)
         {
             if (cur.Count == k)
                 return new List<DataSet[]> { cur.ToArray() };
             List<DataSet[]> rez = new List<DataSet[]>();
-            for (int i = j + 1; i < Cycles.Count; i++)
+            for (int i = j + 1; i < Contours.Count; i++)
             {
-                if (!AnySameRow(cur, Cycles[i]))
+                if (!AnySameRow(cur, Contours[i]))
                 {
                     var newCur = cur.ToList();
-                    newCur.Add(Cycles[i]);
-                    rez.AddRange(DC(Cycles, k, newCur, i));
+                    newCur.Add(Contours[i]);
+                    rez.AddRange(DC(Contours, k, newCur, i));
                 }
             }
             return rez;

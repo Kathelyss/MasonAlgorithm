@@ -12,7 +12,7 @@ namespace MasonAlgorithm
         /// </summary>
         /// <param name="filePath">Пуль к исходному файлу (.xml) в проекте (bin\Debug).</param>
         /// <returns>Возвращает полученный граф.</returns>
-        public static OrGraph ReadFromFile(string filePath)
+        public static Graph ReadFromFile(string filePath)
         {
             //читаем данные из файла
             if (File.Exists(filePath))
@@ -37,7 +37,7 @@ namespace MasonAlgorithm
                             }
                     }
 
-                    return new OrGraph(nodes, nodes[0], nodes[nodes.Count - 1]);
+                    return new Graph(nodes, nodes[0], nodes[nodes.Count - 1]);
                 }
             }
             return null;
