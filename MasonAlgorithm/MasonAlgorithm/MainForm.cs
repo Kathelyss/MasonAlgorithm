@@ -89,7 +89,7 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Устанавливием значения всех путей в визуализированное окошко.
+        /// Устанавливаем значения всех путей в визуализированное окошко
         /// </summary>
         private void SetWaysValueText()
         {
@@ -101,7 +101,7 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Устанавливием значения всех контуров в визуализированное окошко.
+        /// Устанавливием значения всех контуров в визуализированное окошко
         /// </summary>
         private void SetCyclesValuesText()
         {
@@ -113,13 +113,13 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Получение у установка передаточной функции графа.
+        /// Получение и установка передаточной функции графа
         /// </summary>
         private void SetMaisonValue()
         {
             Algorithm Maison = new Algorithm(graph);
-            textBoxNumerator.Text = Maison.getNumerator();
-            textBoxDenominator.Text = Maison.getDenominator();
+            textBoxNumerator.Text = Maison.GetNumerator();
+            textBoxDenominator.Text = Maison.GetDenominator();
 
         }
     }

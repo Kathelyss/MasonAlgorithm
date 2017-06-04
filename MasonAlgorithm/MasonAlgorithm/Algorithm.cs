@@ -24,7 +24,7 @@ namespace MasonAlgorithm
         /// <summary>
         /// Возвращает числитель передаточной функции
         /// </summary>
-        private string GetNumerator()
+        public string GetNumerator()
         {
             string lineWay = "";
             List<DataSet> Cycles = Graph.getCycle.ToList(); //Все контура графа
@@ -58,7 +58,7 @@ namespace MasonAlgorithm
         /// <summary>
         /// Возвращает строковое представление определителя графа
         /// </summary>
-        private string GetDenominator()
+        public string GetDenominator()
         {
             string determinant = "1";
             foreach (DataSet item in Graph.getCycle) //цикл по всем контурам
