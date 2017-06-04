@@ -28,6 +28,8 @@ namespace MasonAlgorithm
             graph = FileReader.ReadFromFile(Adress.Text);
             if(graph!=null)
             {
+                Adjacency_matrix.Controls.Clear();
+
                 Mason = new Algorithm(graph);
                 Adjacency_matrix.RowCount = graph.Points.Count;
                 Adjacency_matrix.ColumnCount = graph.Points.Count;
@@ -49,7 +51,7 @@ namespace MasonAlgorithm
                     for (int j = 0; j < graph.Points.Count;j++)
                     {
                         Adjacency_matrix.GetControlFromPosition(j, i).Text = "0";
-                        foreach (Track t in graph.Points[i].myWay)
+                        foreach (Track t in graph.Points[i].OutWay)
                         {
                             if (t.end == graph.Points[j])
                             {
@@ -83,44 +85,44 @@ namespace MasonAlgorithm
 
         private void Compute_Click(object sender, EventArgs e)
         {
-            /*
-             * Тут какая-то логика о котороя я пока не знаю.
-             */
+            SetCyclesValuesText();
+            SetWaysValueText();
+            SetMaisonValue();
         }
 
         /// <summary>
-        /// Устанавливаем значения всех путей в визуализированное окошко
+        /// Устанавливием значения всех путей в визуализированное окошко.
         /// </summary>
         private void SetWaysValueText()
         {
-            textBoxWays.Text = "";
+            Paths.Text = "Пути:" + Environment.NewLine;
             foreach (var item in graph.getWays)
             {
-                textBoxWays.Text += item.ToString() + Environment.NewLine;
+                Paths.Text += item.ToString() + Environment.NewLine;
             }
         }
 
         /// <summary>
-        /// Устанавливием значения всех контуров в визуализированное окошко
+        /// Устанавливием значения всех контуров в визуализированное окошко.
         /// </summary>
         private void SetCyclesValuesText()
         {
-            textBoxCycles.Text = "";
+            Contours.Text = "Контуры:"+Environment.NewLine;
             foreach (var item in graph.getCycle)
             {
-                textBoxCycles.Text += item.ToString() + Environment.NewLine;
+                Contours.Text += item.ToString() + Environment.NewLine;
             }
         }
 
         /// <summary>
-        /// Получение и установка передаточной функции графа
+        /// Получение у установка передаточной функции графа.
         /// </summary>
         private void SetMaisonValue()
         {
             Algorithm Maison = new Algorithm(graph);
-            textBoxNumerator.Text = Maison.GetNumerator();
-            textBoxDenominator.Text = Maison.GetDenominator();
-
+            Numerator.Text = Maison.GetNumerator();
+            Denominator.Text = Maison.GetDenominator();
+            CHERTA.Text = new String('_',Numerator.Text.Length);
         }
     }
 }
