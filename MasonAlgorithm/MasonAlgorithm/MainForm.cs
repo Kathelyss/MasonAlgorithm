@@ -33,29 +33,18 @@ namespace MasonAlgorithm
                 Mason = new Algorithm(graph);
                 Adjacency_matrix.RowCount = graph.Points.Count;
                 Adjacency_matrix.ColumnCount = graph.Points.Count;
-                Adjacency_matrix.RowStyles.Clear();
-                Adjacency_matrix.ColumnStyles.Clear();
-
-                for (int i =0; i < graph.Points.Count;i++)
-                {
-                    Adjacency_matrix.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / graph.Points.Count));
-                    Adjacency_matrix.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100 / graph.Points.Count));
-                    for (int j = 0; j < graph.Points.Count; j++)
-                    {
-                        Adjacency_matrix.Controls.Add(new Label(), i, j);
-                    }
-                }
+                
 
                 for(int i = 0; i < graph.Points.Count;i++)
                 {
                     for (int j = 0; j < graph.Points.Count;j++)
                     {
-                        Adjacency_matrix.GetControlFromPosition(j, i).Text = "0";
+                        Adjacency_matrix.Rows[i].Cells[j].Value = "0";
                         foreach (Track t in graph.Points[i].OutWaysFromVertex)
                         {
                             if (t.end == graph.Points[j])
                             {
-                                Adjacency_matrix.GetControlFromPosition(j, i).Text = t.TransferFunction;
+                                Adjacency_matrix.Rows[i].Cells[j].Value = t.TransferFunction;
                             }
                         }
                     }
@@ -132,15 +121,20 @@ namespace MasonAlgorithm
             Denominator.Text = Maison.GetDenominator();
             if (Numerator.Text.Length > Denominator.Text.Length)
             {
-                CHERTA.Text = new String('_', Numerator.Text.Length);
+                //CHERTA.Text = new String('_', Numerator.Text.Length);
             }
             else
             {
-                CHERTA.Text = new String('_', Denominator.Text.Length);
+                //CHERTA.Text = new String('_', Denominator.Text.Length);
             }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
