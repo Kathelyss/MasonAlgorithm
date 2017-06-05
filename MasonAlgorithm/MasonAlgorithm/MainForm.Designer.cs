@@ -33,13 +33,13 @@
             this.Adress = new System.Windows.Forms.TextBox();
             this.W = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.Denominator = new System.Windows.Forms.TextBox();
+            this.Numerator = new System.Windows.Forms.TextBox();
             this.Contours = new System.Windows.Forms.Label();
             this.Paths = new System.Windows.Forms.Label();
             this.Compute = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.Adjacency_matrix = new System.Windows.Forms.DataGridView();
-            this.Numerator = new System.Windows.Forms.TextBox();
-            this.Denominator = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -107,9 +107,27 @@
             this.panel2.Location = new System.Drawing.Point(4, 3);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(295, 458);
+            this.panel2.Size = new System.Drawing.Size(296, 458);
             this.panel2.TabIndex = 5;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // Denominator
+            // 
+            this.Denominator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Denominator.Location = new System.Drawing.Point(47, 366);
+            this.Denominator.Name = "Denominator";
+            this.Denominator.Size = new System.Drawing.Size(239, 26);
+            this.Denominator.TabIndex = 8;
+            // 
+            // Numerator
+            // 
+            this.Numerator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Numerator.Location = new System.Drawing.Point(47, 334);
+            this.Numerator.Name = "Numerator";
+            this.Numerator.Size = new System.Drawing.Size(239, 26);
+            this.Numerator.TabIndex = 7;
             // 
             // Contours
             // 
@@ -161,7 +179,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Size = new System.Drawing.Size(810, 462);
-            this.splitContainer1.SplitterDistance = 505;
+            this.splitContainer1.SplitterDistance = 504;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 8;
             // 
@@ -175,32 +193,14 @@
             this.Adjacency_matrix.Location = new System.Drawing.Point(3, 3);
             this.Adjacency_matrix.Name = "Adjacency_matrix";
             this.Adjacency_matrix.RowTemplate.Height = 28;
-            this.Adjacency_matrix.Size = new System.Drawing.Size(499, 456);
+            this.Adjacency_matrix.Size = new System.Drawing.Size(498, 456);
             this.Adjacency_matrix.TabIndex = 0;
-            // 
-            // Numerator
-            // 
-            this.Numerator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Numerator.Location = new System.Drawing.Point(44, 333);
-            this.Numerator.Name = "Numerator";
-            this.Numerator.Size = new System.Drawing.Size(238, 26);
-            this.Numerator.TabIndex = 7;
-            // 
-            // Denominator
-            // 
-            this.Denominator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Denominator.Location = new System.Drawing.Point(44, 365);
-            this.Denominator.Name = "Denominator";
-            this.Denominator.Size = new System.Drawing.Size(238, 26);
-            this.Denominator.TabIndex = 8;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Gainsboro;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(842, 538);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.Compute);
