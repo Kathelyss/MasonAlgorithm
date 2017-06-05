@@ -35,8 +35,17 @@ namespace MasonAlgorithm
             {
                 if ((temp = DataSet.ContoursWithoutWay(Contours, item)) != null)
                 {
-                    //Записываем путь, умноженный на минор пути
-                    lineWay += (temp.Sign * -1 < 0 ? "-" : "+") + "(" + item.ConvertToString() + ") * " + "( 1 " + (temp.Sign * -1 < 0 ? "-" : "+") + " " + temp.AbsValue() + " )";
+                    if (lineWay.Length == 0 && temp.Sign*(-1) > 0)
+                    {
+                        //Записываем путь, умноженный на минор пути
+                        lineWay += "";
+                    }
+                    else
+                    {
+                        lineWay += (temp.Sign * -1 < 0 ? "-" : "+");
+                    }
+                    lineWay += "(" + item.ConvertToString() + ") * " + "( 1 " +
+                                   (temp.Sign * -1 < 0 ? "-" : "+") + " " + temp.AbsValue() + " )";
                 }
                 else
                 {
@@ -56,7 +65,7 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Возвращает строковое представление определителя графа
+        /// Возвращает знаменатель передаточной функции
         /// </summary>
         public string GetDenominator()
         {
