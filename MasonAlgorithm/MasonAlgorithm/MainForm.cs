@@ -80,6 +80,7 @@ namespace MasonAlgorithm
                 SetCyclesValuesText();
                 SetWaysValueText();
                 SetMaisonValue();
+                ComputeMaisonValue();
             }
             else
             {
@@ -112,20 +113,33 @@ namespace MasonAlgorithm
         }
 
         /// <summary>
-        /// Получение у установка передаточной функции графа.
+        /// Получение и установка передаточной функции графа.
         /// </summary>
         private void SetMaisonValue()
         {
             Algorithm Maison = new Algorithm(graph);
-            Numerator1.Text = Maison.GetNumerator();
-            Denominator1.Text = Maison.GetDenominator();
-            if (Numerator1.Text.Length > Denominator1.Text.Length)
+            Numerator.Text = Maison.GetNumerator();
+            Denominator.Text = Maison.GetDenominator();
+            if (Numerator.Text.Length > Denominator.Text.Length)
             {
                 //CHERTA.Text = new String('_', Numerator.Text.Length);
             }
             else
             {
                 //CHERTA.Text = new String('_', Denominator.Text.Length);
+            }
+        }
+
+        private void ComputeMaisonValue()
+        {
+            Algorithm Maison = new Algorithm(graph);
+            Numerator.Text = Maison.GetNumerator();
+            Denominator.Text = Maison.GetDenominator();
+
+            if (!Maison.GetNumerator().Contains("W") && !Maison.GetDenominator().Contains("W"))
+            {
+                Numerator1.Text = Parser.process(Maison.GetNumerator()).ToString();
+                Denominator1.Text = Parser.process(Maison.GetDenominator()).ToString();
             }
         }
     }

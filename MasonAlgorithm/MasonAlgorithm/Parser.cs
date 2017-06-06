@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace MasonAlgorithm
@@ -280,9 +281,16 @@ namespace MasonAlgorithm
         protected override double evaluate(string data, ref int from)
         {
             double num;
-            if (!Double.TryParse(Item, NumberStyles.Number, CultureInfo.CreateSpecificCulture("en-US"), out num))
+            try
             {
-                throw new ArgumentException("Could not parse token [" + Item + "]");
+                if (!Double.TryParse(Item, NumberStyles.Number, CultureInfo.CreateSpecificCulture("en-US"), out num))
+                {
+                    throw new ArgumentException("Could not parse token [" + Item + "]");
+                }
+            }
+            catch (Exception e)
+            {
+                return 0;
             }
             return num;
         }
