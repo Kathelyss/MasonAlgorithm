@@ -25,19 +25,26 @@ namespace MasonAlgorithm
                     List<Vertex> nodes = new List<Vertex>();
                     for (int i = 0; i < countOfNodes; i++)
                         nodes.Add(new Vertex(i.ToString()));
-                    
+
+                    Vertex tmpBegin = nodes[0], tmpEnd = nodes[nodes.Count - 1];
                     //проходим по каждой строке в графе
                     foreach (XElement row in doc.Root.Elements())
                     {
                         // и по каждой ячейке (PF)
                         foreach (XElement PF in row.Elements())
+                        {
                             if (PF.Value != "0")
                             {
                                 new Track(nodes[Convert.ToInt32(row.Attribute("id").Value)], nodes[Convert.ToInt32(PF.Attribute("id").Value)], PF.Value);
                             }
+                            if (PF.Attribute("Begin").Value == "yes")
+                                tmpBegin = nodes[Convert.ToInt32(PF.Attribute("id").Value)];
+                            if (PF.Attribute("End").Value == "yes")
+                                tmpEnd = nodes[Convert.ToInt32(PF.Attribute("id").Value)];
+                        }
                     }
 
-                    return new Graph(nodes, nodes[0], nodes[nodes.Count - 1]);
+                    return new Graph(nodes, tmpBegin, tmpEnd);
                 }
             }
             return null;
