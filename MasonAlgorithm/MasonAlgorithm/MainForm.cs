@@ -117,9 +117,9 @@ namespace MasonAlgorithm
         private void SetMaisonValue()
         {
             Algorithm Maison = new Algorithm(graph);
-            Numerator.Text = Maison.GetNumerator();
-            Denominator.Text = Maison.GetDenominator();
-            if (Numerator.Text.Length > Denominator.Text.Length)
+            Numerator1.Text = Maison.GetNumerator();
+            Denominator1.Text = Maison.GetDenominator();
+            if (Numerator1.Text.Length > Denominator1.Text.Length)
             {
                 //CHERTA.Text = new String('_', Numerator.Text.Length);
             }
@@ -127,16 +127,6 @@ namespace MasonAlgorithm
             {
                 //CHERTA.Text = new String('_', Denominator.Text.Length);
             }
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
