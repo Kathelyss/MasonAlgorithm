@@ -37,9 +37,9 @@ namespace MasonAlgorithm
                             {
                                 new Track(nodes[Convert.ToInt32(row.Attribute("id").Value)], nodes[Convert.ToInt32(PF.Attribute("id").Value)], PF.Value);
                             }
-                            if (PF.Attribute("Begin").Value == "yes")
+                            if (PF.Attribute("Begin")?.Value == "yes")
                                 tmpBegin = nodes[Convert.ToInt32(PF.Attribute("id").Value)];
-                            if (PF.Attribute("End").Value == "yes")
+                            if (PF.Attribute("End")?.Value == "yes")
                                 tmpEnd = nodes[Convert.ToInt32(PF.Attribute("id").Value)];
                         }
                     }
